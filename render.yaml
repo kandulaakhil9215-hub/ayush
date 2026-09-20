@@ -13,7 +13,7 @@ services:
       - key: JWT_SECRET_KEY
         generateValue: true
       - key: FRONTEND_URL
-        value: https://ayush-frontend.onrender.com
+        value: https://ayush-4-ze83.onrender.com
 
   - type: web
     name: ayush-frontend
@@ -23,7 +23,7 @@ services:
     staticPublishPath: dist
     envVars:
       - key: VITE_API_URL
-        value: https://ayush-api.onrender.com
+        value: https://ayush-3-yg21.onrender.com
     routes:
       - type: rewrite
         source: /*
