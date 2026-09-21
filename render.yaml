@@ -2,7 +2,6 @@ services:
   - type: web
     name: ayush-api
     runtime: python
-    runtimeVersion: 3.13.5
     rootDir: backend
     buildCommand: pip install -r requirements.txt
     preDeployCommand: alembic upgrade head
@@ -10,6 +9,8 @@ services:
     healthCheckPath: /health
     envVars:
       - key: DATABASE_URL
+       - key: PYTHON_VERSION
+        value: "3.13.5"
         sync: false
       - key: JWT_SECRET_KEY
         generateValue: true
