@@ -2,6 +2,7 @@ services:
   - type: web
     name: ayush-api
     runtime: python
+    runtimeVersion: 3.13.5
     rootDir: backend
     buildCommand: pip install -r requirements.txt
     preDeployCommand: alembic upgrade head
