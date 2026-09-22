@@ -5,15 +5,19 @@ services:
     rootDir: backend
     buildCommand: pip install -r requirements.txt
     preDeployCommand: alembic upgrade head
-    startCommand: alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
+
     envVars:
-      - key: DATABASE_URL
-       - key: PYTHON_VERSION
+      - key: PYTHON_VERSION
         value: "3.13.5"
+
+      - key: DATABASE_URL
         sync: false
+
       - key: JWT_SECRET_KEY
         generateValue: true
+
       - key: FRONTEND_URL
         value: https://ayush-4-ze83.onrender.com
 
@@ -23,9 +27,11 @@ services:
     rootDir: frontend
     buildCommand: npm ci && npm run build
     staticPublishPath: dist
+
     envVars:
       - key: VITE_API_URL
         value: https://ayush-3-yg21.onrender.com
+
     routes:
       - type: rewrite
         source: /*
