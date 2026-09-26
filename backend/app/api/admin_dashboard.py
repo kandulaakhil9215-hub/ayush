@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+﻿from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from app.core.permissions import require_roles
@@ -103,6 +103,36 @@ def admin_dashboard_overview(
             ),
         },
     }
+
+
+# ============================================================
+# GET ALL INSTITUTIONS
+# GET /api/admin/institutions
+# ============================================================
+
+@admin_router.get("/institutions")
+def get_admin_institutions(
+    db: Session = Depends(get_db),
+    current_user=Depends(require_roles(*ADMIN_ROLES)),
+):
+    institutions = (
+        db.query(Institution)
+        .order_by(Institution.id.asc())
+        .all()
+    )
+
+    return [
+        {
+            "id": institution.id,
+            "name": institution.name,
+            "code": institution.institution_code,
+            "type": institution.institution_type,
+            "state": institution.state,
+            "district": institution.district,
+            "city": institution.city,
+        }
+        for institution in institutions
+    ]
 
 
 # ============================================================
