@@ -39,7 +39,11 @@ from app.api.collaboration import router as collaboration_router
 from app.api.notifications import router as notifications_router
 from app.api.audit import router as audit_router
 from app.api.faculty_profile import router as faculty_profile_router
-from app.api.admin_dashboard import router as admin_dashboard_router
+from app.api.admin_dashboard import (
+    router as admin_dashboard_router,
+    admin_router,
+)
+
 app = FastAPI(
 title="Academia-Industry Skill Mapping Platform",
 description="AYUSH Academia-Industry Skill Mapping & Collaboration Platform",
@@ -117,3 +121,4 @@ app.include_router(notifications_router)
 app.include_router(audit_router)
 app.include_router(faculty_profile_router)
 app.include_router(admin_dashboard_router)
+app.include_router(admin_router)
